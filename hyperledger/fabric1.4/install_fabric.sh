@@ -41,3 +41,15 @@ cp $FABRIC_HOME/sampleconfig/core.yaml .
 cp $FABRIC_HOME/sampleconfig/orderer.yaml .
 echo 'export FABRIC_CFG_PATH=$HOME/fabric1.3' >> ~/.profile
 source ~/.profile
+
+cd $GOPATH/src/github.com/hyperledger
+git clone -b release-1.3 https://github.com/hyperledger/fabric-ca
+cd fabric-ca
+make fabric-ca-server
+make fabric-ca-client
+echo 'export PATH=$PATH:$GOPATH/src/github.com/hyperledger/fabric-ca/bin' >> ~/.profile
+echo 'export FABRIC_CA_SERVER_HOME=$HOME/fabric1.3' >> ~/.profile
+echo 'export FABRIC_CA_CLIENT_HOME=$HOME/fabric1.3' >> ~/.profile
+source ~/.profile
+
+
