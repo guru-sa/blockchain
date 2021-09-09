@@ -1,0 +1,1 @@
+parity --chain=goerli
