@@ -1,2 +1,2 @@
 # blockchain
-This repository contains codes about blockchain.
+This repository contains codes about blockchain
