@@ -1,0 +1,53 @@
+Welcome to the Geth JavaScript console!
+
+instance: Geth/v1.10.9-stable-eae3b194/linux-amd64/go1.17
+coinbase: 0x6056b5532d4c6aa74b8fe7debaf23e91ad15d7df
+at block: 0 (Thu Jan 01 1970 09:00:00 GMT+0900 (KST))
+ datadir: /home/yssa/blockchain/ubuntu/ethereum/datadir
+ modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+
+To exit, press ctrl-d or type exit
+> caught interrupt, exiting
+INFO [10-14|18:55:55.152] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [10-14|18:55:55.152] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+INFO [10-14|18:55:55.154] Set global gas cap                       cap=50,000,000
+INFO [10-14|18:55:55.154] Allocated trie memory caches             clean=154.00MiB dirty=256.00MiB
+INFO [10-14|18:55:55.154] Allocated cache and file handles         database=/home/yssa/blockchain/ubuntu/ethereum/datadir/geth/chaindata cache=512.00MiB handles=524,288
+INFO [10-14|18:55:55.174] Opened ancient database                  database=/home/yssa/blockchain/ubuntu/ethereum/datadir/geth/chaindata/ancient readonly=false
+INFO [10-14|18:55:55.175] Initialised chain configuration          config="{ChainID: 1100 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: 0 EIP155: 0 EIP158: 0 Byzantium: 0 Constantinople: <nil> Petersburg: <nil> Istanbul: <nil>, Muir Glacier: <nil>, Berlin: <nil>, London: <nil>, Engine: unknown}"
+INFO [10-14|18:55:55.175] Disk storage enabled for ethash caches   dir=/home/yssa/blockchain/ubuntu/ethereum/datadir/geth/ethash count=3
+INFO [10-14|18:55:55.175] Disk storage enabled for ethash DAGs     dir=/home/yssa/.ethash count=2
+INFO [10-14|18:55:55.175] Initialising Ethereum protocol           network=1100 dbversion=8
+INFO [10-14|18:55:55.176] Loaded most recent local header          number=0 hash=15fb33..eba0e1 td=400 age=52y6mo2w
+INFO [10-14|18:55:55.176] Loaded most recent local full block      number=0 hash=15fb33..eba0e1 td=400 age=52y6mo2w
+INFO [10-14|18:55:55.176] Loaded most recent local fast block      number=0 hash=15fb33..eba0e1 td=400 age=52y6mo2w
+INFO [10-14|18:55:55.176] Loaded local transaction journal         transactions=0 dropped=0
+INFO [10-14|18:55:55.176] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [10-14|18:55:55.176] Gasprice oracle is ignoring threshold set threshold=2
+INFO [10-14|18:55:55.177] Starting peer-to-peer node               instance=Geth/v1.10.9-stable-eae3b194/linux-amd64/go1.17
+INFO [10-14|18:55:55.218] New local node record                    seq=1,634,205,261,744 id=47c900d2b864df3b ip=127.0.0.1 udp=30303 tcp=30303
+INFO [10-14|18:55:55.219] Started P2P networking                   self=enode://d46f49a29b7460f9c94be80f4c8c3946286eac1b3690c8d0e25eb482d84d8be1650f450712cd485d7d22a999bed82643b67461ec312e7722391003cc40c9c11d@127.0.0.1:30303
+INFO [10-14|18:55:55.234] IPC endpoint opened                      url=/home/yssa/blockchain/ubuntu/ethereum/datadir/geth.ipc
+INFO [10-14|18:55:55.299] Etherbase automatically configured       address=0x6056B5532D4C6Aa74B8fE7DEbaf23e91aD15d7DF
+INFO [10-14|18:56:00.932] New local node record                    seq=1,634,205,261,745 id=47c900d2b864df3b ip=219.250.239.150 udp=61074 tcp=30303
+INFO [10-14|18:56:05.222] Looking for peers                        peercount=2 tried=122 static=0
+INFO [10-14|18:56:15.477] Looking for peers                        peercount=0 tried=80  static=0
+INFO [10-14|18:56:27.148] Looking for peers                        peercount=0 tried=98  static=0
+INFO [10-14|18:56:38.755] Looking for peers                        peercount=0 tried=89  static=0
+INFO [10-14|18:57:00.185] Looking for peers                        peercount=0 tried=114 static=0
+ERROR[10-14|18:57:00.749] Snapshot extension registration failed   peer=51071016 err="peer connected on snap without compatible eth support"
+ERROR[10-14|18:57:09.301] Snapshot extension registration failed   peer=1125cc47 err="peer connected on snap without compatible eth support"
+INFO [10-14|18:57:10.191] Looking for peers                        peercount=0 tried=110 static=0
+INFO [10-14|18:57:22.371] Looking for peers                        peercount=0 tried=85  static=0
+INFO [10-14|18:57:33.678] Looking for peers                        peercount=0 tried=100 static=0
+INFO [10-14|18:57:43.690] Looking for peers                        peercount=0 tried=103 static=0
+ERROR[10-14|18:57:51.728] Snapshot extension registration failed   peer=3af25a30 err="peer connected on snap without compatible eth support"
+INFO [10-14|18:57:53.713] Looking for peers                        peercount=0 tried=143 static=0
+INFO [10-14|18:58:03.763] IPC endpoint closed                      url=/home/yssa/blockchain/ubuntu/ethereum/datadir/geth.ipc
+INFO [10-14|18:58:03.763] Ethereum protocol stopped 
+INFO [10-14|18:58:03.763] Transaction pool stopped 
+INFO [10-14|18:58:03.763] Writing snapshot state to disk           root=5762ba..aca657
+INFO [10-14|18:58:03.763] Persisted trie from memory database      nodes=0 size=0.00B time="4.158µs" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [10-14|18:58:03.763] Writing clean trie cache to disk         path=/home/yssa/blockchain/ubuntu/ethereum/datadir/geth/triecache threads=1
+INFO [10-14|18:58:03.765] Persisted the clean trie cache           path=/home/yssa/blockchain/ubuntu/ethereum/datadir/geth/triecache elapsed=1.195ms
+INFO [10-14|18:58:03.765] Blockchain stopped 

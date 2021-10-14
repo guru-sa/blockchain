@@ -24,5 +24,3 @@ httpVHosts=${10:-""}
 port=${11:-"30301"}
 
 geth --networkid "${networkId}" --datadir "${dataDir}" --keystore "${keystoreDir}" --syncmode "${syncMode}" --http --http.port "${httpPort}" --http.api "${httpAPI}" --http.corsdomain "${httpCorsDomain}" --port "${port}" console
-
-exit 0

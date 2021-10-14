@@ -1,6 +1,6 @@
 {
   "config": {
-    "chainId": 1100,
+    "chainId": __NETWORKID__,
     "homesteadBlock": 0,
     "eip155Block": 0,
     "eip158Block": 0,
@@ -9,7 +9,7 @@
   "difficulty": "400",
   "gasLimit": "2000000",
   "alloc": {
-    "_ACCOUNT_ADDRESS_": {
+    "__ACCOUNT_ADDRESS__": {
       "balance": "100000000000000000000000"
     }
   }
