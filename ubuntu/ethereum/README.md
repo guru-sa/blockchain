@@ -37,3 +37,5 @@ txpool
 # For using infura in web3js application, assign endpoint as HTTP provider
 web3 = new Web3(new Web3.providers.HttpProvider("https://goerli.infura.io/v3/12cab9e1c781450cad67f05b839c11d3 
 
+# puppeth
+
