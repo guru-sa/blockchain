@@ -19,6 +19,6 @@ fi
 if ${isOpcodes}; then
   params=${params} --opcodes
 fi
-echo ${params}
-solc -o bin --bin ${params} ${fileName}
+
+solc -o bin --optimize --bin ${params} ${fileName} 
 
