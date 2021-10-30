@@ -22,7 +22,7 @@ mkdir -p $GOPATH/src/github.com/hyperledger/
     mkdir -p ${SCRIPTPATH}/bin/
     cp ./build/bin/* ${SCRIPTPATH}/bin/
     export TEST_NETWORK_HOME=${SCRIPTPATH}/test-network
-    echo "export TEST_NETWORK=${TEST_NETWORK_HOME}" >> ~/.bashrc
+    echo "export TEST_NETWORK_HOME=${TEST_NETWORK_HOME}" >> ~/.bashrc
     echo "export PATH=${SCRIPTPATH}/bin:$PATH" >> ~/.bashrc
   )
 )
