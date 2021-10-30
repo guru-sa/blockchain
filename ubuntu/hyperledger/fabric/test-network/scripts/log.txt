@@ -1,2 +1,2 @@
-[34m2021-10-30 00:29:52.515 KST [channelCmd] InitCmdFactory -> INFO 001[0m Endorser and orderer connections initialized
-[34m2021-10-30 00:29:52.985 KST [channelCmd] executeJoin -> INFO 002[0m Successfully submitted proposal to join channel
+[34m2021-10-30 17:16:29.590 KST [channelCmd] InitCmdFactory -> INFO 001[0m Endorser and orderer connections initialized
+[34m2021-10-30 17:16:30.059 KST [channelCmd] executeJoin -> INFO 002[0m Successfully submitted proposal to join channel

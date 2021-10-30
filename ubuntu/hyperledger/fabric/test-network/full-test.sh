@@ -37,13 +37,19 @@ scripts/startNodes.sh false
 sleep 5
 
 scripts/createChannelGenesisBlock.sh "mychannel"
+sleep 5
 scripts/createChannel.sh "mychannel" false "1" "5"
+sleep 5
 scripts/joinChannel.sh "mychannel" 1 false "1" "5"
+sleep 5
 scripts/joinChannel.sh "mychannel" 2 false "1" "5"
+sleep 5
 docker exec cli ./scripts/setAnchorPeer.sh 1 "mychannel"
+sleep 5
 docker exec cli ./scripts/setAnchorPeer.sh 2 "mychannel"
+sleep 5
 
-scripts/deployCC.sh "mychannel" "abstore" "go" "1.0" "1" "" "" "" "3" "5" "false"
+# scripts/deployCC.sh "mychannel" "abstore" "go" "1.0" "1" "" "" "" "3" "5" "false"
 
 # scripts/startCA.sh true
 # sleep 5
