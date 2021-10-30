@@ -4,46 +4,46 @@ SCRIPTPATH=`dirname ${SCRIPT}`
 SCRIPTNAME=`basename ${SCRIPT}`
 cd ${SCRIPTPATH}
 
-# scripts/startCA.sh false
-# sleep 5
-# scripts/enroll.sh false true "" "" "org1.example.com" "7054" "org1" "ca-org1" "admin"
-# scripts/register.sh false "org1.example.com" "org1" "ca-org1" "peer0" "peer"
-# scripts/register.sh false "org1.example.com" "org1" "ca-org1" "user1" "client"
-# scripts/register.sh false "org1.example.com" "org1" "ca-org1" "org1admin" "admin"
-# scripts/enroll.sh false false "msp" "host" "org1.example.com" "7054" "org1" "ca-org1" "peer0"
-# scripts/enroll.sh false false "tls" "" "org1.example.com" "7054" "org1" "ca-org1" "peer0"
-# scripts/enroll.sh false false "msp" "user" "org1.example.com" "7054" "org1" "ca-org1" "user1"
-# scripts/enroll.sh false false "msp" "user" "org1.example.com" "7054" "org1" "ca-org1" "org1admin"
-# ./organizations/ccp-generate.sh "1" "7051" "7054" "org1.example.com"
+scripts/startCA.sh false
+sleep 5
+scripts/enroll.sh false true "" "" "org1.example.com" "7054" "org1" "ca-org1" "admin"
+scripts/register.sh false "org1.example.com" "org1" "ca-org1" "peer0" "peer"
+scripts/register.sh false "org1.example.com" "org1" "ca-org1" "user1" "client"
+scripts/register.sh false "org1.example.com" "org1" "ca-org1" "org1admin" "admin"
+scripts/enroll.sh false false "msp" "host" "org1.example.com" "7054" "org1" "ca-org1" "peer0"
+scripts/enroll.sh false false "tls" "" "org1.example.com" "7054" "org1" "ca-org1" "peer0"
+scripts/enroll.sh false false "msp" "user" "org1.example.com" "7054" "org1" "ca-org1" "user1"
+scripts/enroll.sh false false "msp" "user" "org1.example.com" "7054" "org1" "ca-org1" "org1admin"
+./organizations/ccp-generate.sh "1" "7051" "7054" "org1.example.com"
 
-# scripts/enroll.sh false true "" "" "org2.example.com" "8054" "org2" "ca-org2" "admin"
-# scripts/register.sh false "org2.example.com" "org2" "ca-org2" "peer0" "peer"
-# scripts/register.sh false "org2.example.com" "org2" "ca-org2" "user1" "client"
-# scripts/register.sh false "org2.example.com" "org2" "ca-org2" "org2admin" "admin"
-# scripts/enroll.sh false false "msp" "host" "org2.example.com" "8054" "org2" "ca-org2" "peer0"
-# scripts/enroll.sh false false "tls" "" "org2.example.com" "8054" "org2" "ca-org2" "peer0"
-# scripts/enroll.sh false false "msp" "user" "org2.example.com" "8054" "org2" "ca-org2" "user1"
-# scripts/enroll.sh false false "msp" "user" "org2.example.com" "8054" "org2" "ca-org2" "org2admin"
-# ./organizations/ccp-generate.sh "2" "9051" "8054" "org2.example.com"
+scripts/enroll.sh false true "" "" "org2.example.com" "8054" "org2" "ca-org2" "admin"
+scripts/register.sh false "org2.example.com" "org2" "ca-org2" "peer0" "peer"
+scripts/register.sh false "org2.example.com" "org2" "ca-org2" "user1" "client"
+scripts/register.sh false "org2.example.com" "org2" "ca-org2" "org2admin" "admin"
+scripts/enroll.sh false false "msp" "host" "org2.example.com" "8054" "org2" "ca-org2" "peer0"
+scripts/enroll.sh false false "tls" "" "org2.example.com" "8054" "org2" "ca-org2" "peer0"
+scripts/enroll.sh false false "msp" "user" "org2.example.com" "8054" "org2" "ca-org2" "user1"
+scripts/enroll.sh false false "msp" "user" "org2.example.com" "8054" "org2" "ca-org2" "org2admin"
+./organizations/ccp-generate.sh "2" "9051" "8054" "org2.example.com"
 
-# scripts/enroll.sh true true "" "" "example.com" "9054" "ordererOrg" "ca-orderer" "admin"
-# scripts/register.sh true "example.com" "ordererOrg" "ca-orderer" "orderer" "orderer"
-# scripts/register.sh true "example.com" "ordererOrg" "ca-orderer" "ordererAdmin" "admin"
-# scripts/enroll.sh true false "msp" "host" "example.com" "9054" "ordererOrg" "ca-orderer" "orderer"
-# scripts/enroll.sh true false "tls" "" "example.com" "9054" "ordererOrg" "ca-orderer" "orderer"
-# scripts/enroll.sh true false "msp" "user" "example.com" "9054" "ordererOrg" "ca-orderer" "ordererAdmin"
+scripts/enroll.sh true true "" "" "example.com" "9054" "ordererOrg" "ca-orderer" "admin"
+scripts/register.sh true "example.com" "ordererOrg" "ca-orderer" "orderer" "orderer"
+scripts/register.sh true "example.com" "ordererOrg" "ca-orderer" "ordererAdmin" "admin"
+scripts/enroll.sh true false "msp" "host" "example.com" "9054" "ordererOrg" "ca-orderer" "orderer"
+scripts/enroll.sh true false "tls" "" "example.com" "9054" "ordererOrg" "ca-orderer" "orderer"
+scripts/enroll.sh true false "msp" "user" "example.com" "9054" "ordererOrg" "ca-orderer" "ordererAdmin"
 
-# scripts/startNodes.sh false
-# sleep 5
+scripts/startNodes.sh false
+sleep 5
 
-# scripts/createChannelGenesisBlock.sh "mychannel"
-# scripts/createChannel.sh "mychannel" false "1" "5"
-# scripts/joinChannel.sh "mychannel" 1 false "1" "5"
-# scripts/joinChannel.sh "mychannel" 2 false "1" "5"
-# docker exec cli ./scripts/setAnchorPeer.sh 1 "mychannel"
-# docker exec cli ./scripts/setAnchorPeer.sh 2 "mychannel"
+scripts/createChannelGenesisBlock.sh "mychannel"
+scripts/createChannel.sh "mychannel" false "1" "5"
+scripts/joinChannel.sh "mychannel" 1 false "1" "5"
+scripts/joinChannel.sh "mychannel" 2 false "1" "5"
+docker exec cli ./scripts/setAnchorPeer.sh 1 "mychannel"
+docker exec cli ./scripts/setAnchorPeer.sh 2 "mychannel"
 
-# scripts/deployCC.sh "mychannel" "abstore" "go" "1.0" "1" "" "" "" "3" "5" "false"
+scripts/deployCC.sh "mychannel" "abstore" "go" "1.0" "1" "" "" "" "3" "5" "false"
 
 # scripts/startCA.sh true
 # sleep 5
