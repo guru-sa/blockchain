@@ -1,17 +1,27 @@
 #!/bin/bash
+SCRIPT=`realpath -s $0`
+SCRIPTPATH=`dirname ${SCRIPT}`
+SCRIPTNAME=`basename ${SCRIPT}`
+cd ${SCRIPTPATH}
 
-. scripts/utils.sh
+. utils.sh
+
+isAdd=${1:-false}
 
 IMAGETAG="2.3.3"
 DATABASE="leveldb"
-COMPOSE_FILE_BASE=docker/docker-compose-test-net.yaml
-COMPOSE_FILE_COUCH=docker/docker-compose-couch.yaml
 
-export PATH=${PWD}/../bin:$PATH
+if ${isAdd}; then
+  COMPOSE_FILE_BASE=docker/docker-compose-org3.yaml
+  COMPOSE_FILE_COUCH=docker/docker-compose-couch-org3.yaml
+else
+  COMPOSE_FILE_BASE=docker/docker-compose-test-net.yaml
+  COMPOSE_FILE_COUCH=docker/docker-compose-couch.yaml
+fi
 
 peer version > /dev/null 2>&1
 
-if [[ $? -ne 0 ]]; then
+if [[ $? -ne 0 || ! -d "config" ]]; then
   errorln "Peer binary and configuration files not found.."
   errorln
   errorln "Follow the instructions in the Fabric docs to install the Fabric Binaries:"
@@ -36,5 +46,7 @@ if [ "${DATABASE}" == "couchdb" ]; then
   COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_COUCH}"
 fi
 IMAGE_TAG=$IMAGETAG docker-compose ${COMPOSE_FILES} up -d 2>&1
-
+if [ $? -ne 0 ]; then
+  fatalln "ERROR !!!! Unable to start node"
+fi
 exit 0

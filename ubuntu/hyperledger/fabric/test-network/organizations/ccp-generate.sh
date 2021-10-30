@@ -12,7 +12,7 @@ function json_ccp {
         -e "s/\${CAPORT}/$3/" \
         -e "s#\${PEERPEM}#$PP#" \
         -e "s#\${CAPEM}#$CP#" \
-        organizations/ccp-template.json
+        ccp-template.json
 }
 
 function yaml_ccp {
@@ -23,23 +23,15 @@ function yaml_ccp {
         -e "s/\${CAPORT}/$3/" \
         -e "s#\${PEERPEM}#$PP#" \
         -e "s#\${CAPEM}#$CP#" \
-        organizations/ccp-template.yaml | sed -e $'s/\\\\n/\\\n          /g'
+        ccp-template.yaml | sed -e $'s/\\\\n/\\\n        /g'
 }
 
-ORG=1
-P0PORT=7051
-CAPORT=7054
-PEERPEM=organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
-CAPEM=organizations/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem
+ORG=${1:-"3"}
+P0PORT=${2:-"11051"}
+CAPORT=${3:-"11054"}
+DOMAIN=${4:-"org3.example.com"}
+PEERPEM=${TEST_NETWORK_HOME}/organizations/peerOrganizations/${DOMAIN}/tlsca/tlsca.${DOMAIN}-cert.pem
+CAPEM=${TEST_NETWORK_HOME}/organizations/peerOrganizations/${DOMAIN}/ca/ca.${DOMAIN}-cert.pem
 
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/org1.example.com/connection-org1.json
-echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/org1.example.com/connection-org1.yaml
-
-ORG=2
-P0PORT=9051
-CAPORT=8054
-PEERPEM=organizations/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem
-CAPEM=organizations/peerOrganizations/org2.example.com/ca/ca.org2.example.com-cert.pem
-
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/org2.example.com/connection-org2.json
-echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/org2.example.com/connection-org2.yaml
+echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > ${TEST_NETWORK_HOME}/organizations/peerOrganizations/${DOMAIN}/connection-org${ORG}.json
+echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > ${TEST_NETWORK_HOME}/organizations/peerOrganizations/${DOMAIN}/connection-org${ORG}.yaml

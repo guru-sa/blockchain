@@ -1,11 +1,20 @@
 #!/bin/bash
+SCRIPT=`realpath -s $0`
+SCRIPTPATH=`dirname ${SCRIPT}`
+SCRIPTNAME=`basename ${SCRIPT}`
+cd ${SCRIPTPATH}
 
-. scripts/utils.sh
+isAdd=${1:-false}
 
-export PATH=${PWD}/../bin:$PATH
+. utils.sh
 
 CA_IMAGETAG="1.5.2"
-COMPOSE_FILE_CA=docker/docker-compose-ca.yaml
+if ${isAdd}; then
+  COMPOSE_FILE_CA=docker/docker-compose-ca-org3.yaml
+else
+  COMPOSE_FILE_CA=docker/docker-compose-ca.yaml
+fi
+
 
 fabric-ca-client version > /dev/null 2>&1
 if [[ $? -ne 0 ]]; then

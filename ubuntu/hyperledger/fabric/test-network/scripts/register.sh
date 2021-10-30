@@ -1,7 +1,10 @@
 #!/bin/bash
-
-. scripts/utils.sh
-. scripts/envVar.sh
+SCRIPT=`realpath -s $0`
+SCRIPTPATH=`dirname ${SCRIPT}`
+SCRIPTNAME=`basename ${SCRIPT}`
+cd ${SCRIPTPATH}
+. utils.sh
+. envVar.sh
 
 isOrderer=${1:-false}
 domain=${2:-"org1.example.com"}
@@ -11,17 +14,16 @@ account=${5:-"peer0"}
 accountType=${6:-"peer"}
 
 if ${isOrderer}; then
-  fabricCAClientHome=organizations/${ORDERER_ORGS}/${domain}
+  fabricCAClientHome=${TEST_NETWORK_HOME}/organizations/${ORDERER_ORGS}/${domain}
 else
-  fabricCAClientHome=organizations/${PEER_ORGS}/${domain}
+  fabricCAClientHome=${TEST_NETWORK_HOME}/organizations/${PEER_ORGS}/${domain}
 fi
 
-export PATH=${PWD}/../bin:$PATH
-export FABRIC_CA_CLIENT_HOME=${PWD}/${fabricCAClientHome}
+export FABRIC_CA_CLIENT_HOME=${fabricCAClientHome}
 
 infoln "Registering ${account}"
 set -x
-fabric-ca-client register --caname ${caName} --id.name ${account} --id.secret ${account}pw --id.type ${accountType} --tls.certfiles "${PWD}/${FABRIC_CA_SERVER_HOME}/${org}/tls-cert.pem"
+fabric-ca-client register --caname ${caName} --id.name ${account} --id.secret ${account}pw --id.type ${accountType} --tls.certfiles "${FABRIC_CA_SERVER_HOME}/${org}/tls-cert.pem"
 { set +x; } 2>/dev/null
 
 exit 0

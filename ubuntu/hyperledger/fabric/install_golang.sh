@@ -18,6 +18,10 @@ export GOROOT="/opt/go"
 export GOPATH="/opt/gopath"
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
+echo "export GOROOT=$GOROOT" >> ~/.bashrc
+echo "export GOPATH=$GOPATH" >> ~/.bashrc
+echo "export PATH=$GOROOT/bin:$GOPATH/bin:$PATH" >> ~/.bashrc
+
 cat <<EOF >/etc/profile.d/goroot.sh
 export GOROOT=$GOROOT
 export GOPATH=$GOPATH

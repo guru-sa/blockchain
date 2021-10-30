@@ -1,19 +1,26 @@
 #!/bin/bash
+SCRIPT=`realpath -s $0`
+SCRIPTPATH=`dirname ${SCRIPT}`
+SCRIPTNAME=`basename ${SCRIPT}`
+cd ${SCRIPTPATH}
 
-source scripts/utils.sh
+source utils.sh
+
+. envVar.sh
 
 CHANNEL_NAME=${1:-"mychannel"}
-CC_NAME=${2}
-CC_SRC_PATH=${3}
-CC_SRC_LANGUAGE=${4}
-CC_VERSION=${5:-"1.0"}
-CC_SEQUENCE=${6:-"1"}
-CC_INIT_FCN=${7:-"NA"}
-CC_END_POLICY=${8:-"NA"}
-CC_COLL_CONFIG=${9:-"NA"}
-DELAY=${10:-"3"}
-MAX_RETRY=${11:-"5"}
-VERBOSE=${12:-"false"}
+CC_NAME=${2:-"abstore"}
+CC_SRC_LANGUAGE=${3:-"go"}
+CC_VERSION=${4:-"1.0"}
+CC_SEQUENCE=${5:-"1"}
+CC_INIT_FCN=${6:-"NA"}
+CC_END_POLICY=${7:-"NA"}
+CC_COLL_CONFIG=${8:-"NA"}
+DELAY=${9:-"3"}
+MAX_RETRY=${10:-"5"}
+VERBOSE=${11:-"false"}
+
+export FABRIC_CFG_PATH=${TEST_NETWORK_HOME}/scripts/config
 
 println "executing with the following"
 println "- CHANNEL_NAME: ${C_GREEN}${CHANNEL_NAME}${C_RESET}"
@@ -28,8 +35,6 @@ println "- CC_INIT_FCN: ${C_GREEN}${CC_INIT_FCN}${C_RESET}"
 println "- DELAY: ${C_GREEN}${DELAY}${C_RESET}"
 println "- MAX_RETRY: ${C_GREEN}${MAX_RETRY}${C_RESET}"
 println "- VERBOSE: ${C_GREEN}${VERBOSE}${C_RESET}"
-
-FABRIC_CFG_PATH=$PWD/../config/
 
 #User has not provided a name
 if [ -z "$CC_NAME" ] || [ "$CC_NAME" = "NA" ]; then
@@ -55,7 +60,7 @@ if [ "$CC_SRC_LANGUAGE" = "go" ]; then
   CC_RUNTIME_LANGUAGE=golang
 
   infoln "Vendoring Go dependencies at $CC_SRC_PATH"
-  pushd $CC_SRC_PATH
+  pushd $CC_SRC_PATH/$CC_NAME/$CC_SRC_LANGUAGE
   GO111MODULE=on go mod vendor
   popd
   successln "Finished vendoring Go dependencies"
@@ -64,11 +69,11 @@ elif [ "$CC_SRC_LANGUAGE" = "java" ]; then
   CC_RUNTIME_LANGUAGE=java
 
   infoln "Compiling Java code..."
-  pushd $CC_SRC_PATH
+  pushd $CC_SRC_PATH/$CC_NAME/$CC_SRC_LANGUAGE
   ./gradlew installDist
   popd
   successln "Finished compiling Java code"
-  CC_SRC_PATH=$CC_SRC_PATH/build/install/$CC_NAME
+  CC_SRC_PATH=$CC_SRC_PATH/$CC_NAME/$CC_SRC_LANGUAGE/build/install/$CC_NAME
 
 elif [ "$CC_SRC_LANGUAGE" = "javascript" ]; then
   CC_RUNTIME_LANGUAGE=node
@@ -77,14 +82,14 @@ elif [ "$CC_SRC_LANGUAGE" = "typescript" ]; then
   CC_RUNTIME_LANGUAGE=node
 
   infoln "Compiling TypeScript code into JavaScript..."
-  pushd $CC_SRC_PATH
+  pushd $CC_SRC_PATH/$CC_NAME/$CC_SRC_LANGUAGE
   npm install
   npm run build
   popd
   successln "Finished compiling TypeScript code into JavaScript"
 
 else
-  fatalln "The chaincode language ${CC_SRC_LANGUAGE} is not supported by this script. Supported chaincode languages are: go, java, javascript, and typescript"
+  fatalln "The chaincode language $CC_SRC_PATH/$CC_NAME/$CC_SRC_LANGUAGE is not supported by this script. Supported chaincode languages are: go, java, javascript, and typescript"
   exit 1
 fi
 
@@ -106,12 +111,9 @@ else
   CC_COLL_CONFIG="--collections-config $CC_COLL_CONFIG"
 fi
 
-# import utils
-. scripts/envVar.sh
-
 packageChaincode() {
   set -x
-  peer lifecycle chaincode package ${CC_NAME}.tar.gz --path ${CC_SRC_PATH} --lang ${CC_RUNTIME_LANGUAGE} --label ${CC_NAME}_${CC_VERSION} >&log.txt
+  peer lifecycle chaincode package ${CC_NAME}.tar.gz --path $CC_SRC_PATH/$CC_NAME/$CC_SRC_LANGUAGE --lang ${CC_RUNTIME_LANGUAGE} --label ${CC_NAME}_${CC_VERSION} >&log.txt
   res=$?
   { set +x; } 2>/dev/null
   cat log.txt

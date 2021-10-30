@@ -1,17 +1,21 @@
 #!/bin/bash
+SCRIPT=`realpath -s $0`
+SCRIPTPATH=`dirname ${SCRIPT}`
+SCRIPTNAME=`basename ${SCRIPT}`
+cd ${SCRIPTPATH}
 
 # use this as the default docker-compose yaml definition
-COMPOSE_FILE_BASE=../docker/docker-compose-test-net.yaml
+COMPOSE_FILE_BASE=docker/docker-compose-test-net.yaml
 # docker-compose.yaml file if you are using couchdb
-COMPOSE_FILE_COUCH=../docker/docker-compose-couch.yaml
+COMPOSE_FILE_COUCH=docker/docker-compose-couch.yaml
 # certificate authorities compose file
-COMPOSE_FILE_CA=../docker/docker-compose-ca.yaml
+COMPOSE_FILE_CA=docker/docker-compose-ca.yaml
 # use this as the docker compose couch file for org3
-COMPOSE_FILE_COUCH_ORG3=../addOrg3/docker/docker-compose-couch-org3.yaml
+COMPOSE_FILE_COUCH_ORG3=addOrg3/docker/docker-compose-couch-org3.yaml
 # use this as the default docker-compose yaml definition for org3
-COMPOSE_FILE_ORG3=../addOrg3/docker/docker-compose-org3.yaml
+COMPOSE_FILE_ORG3=addOrg3/docker/docker-compose-org3.yaml
 
-. ./utils.sh
+. utils.sh
 
 # Obtain CONTAINER_IDS and remove them
 # TODO Might want to make this optional - could clear other containers
