@@ -20,7 +20,7 @@ fetchChannelConfig() {
 
   infoln "Fetching the most recent configuration block for the channel"
   set -x
-  peer channel fetch config config_block.pb -o orderer.example.com:7050 --ordererTLSHostnameOverride orderer.example.com -c $CHANNEL --tls --cafile "$ORDERER_CA"
+  peer channel fetch config config_block.pb -o orderer.seogang.com:7050 --ordererTLSHostnameOverride orderer.seogang.com -c $CHANNEL --tls --cafile "$ORDERER_CA"
   { set +x; } 2>/dev/null
   infoln "Decoding config block to JSON and isolating config to ${OUTPUT}"
   set -x
@@ -34,13 +34,13 @@ fetchChannelConfig $ORG $CHANNEL_NAME ${CORE_PEER_LOCALMSPID}config.json
 infoln "Generating anchor peer update transaction for Org${ORG} on channel $CHANNEL_NAME"
 
 if [ $ORG -eq 1 ]; then
-  HOST="peer0.org1.example.com"
+  HOST="peer0.org1.seogang.com"
   PORT=7051
 elif [ $ORG -eq 2 ]; then
-  HOST="peer0.org2.example.com"
+  HOST="peer0.org2.seogang.com"
   PORT=9051
 elif [ $ORG -eq 3 ]; then
-  HOST="peer0.org3.example.com"
+  HOST="peer0.org3.seogang.com"
   PORT=11051
 else
   errorln "Org${ORG} unknown"
@@ -64,7 +64,7 @@ echo '{"payload":{"header":{"channel_header":{"channel_id":"'$CHANNEL'", "type":
 configtxlator proto_encode --input config_update_in_envelope.json --type common.Envelope >"${OUTPUT}"
 { set +x; } 2>/dev/null
 
-peer channel update -o orderer.example.com:7050 --ordererTLSHostnameOverride orderer.example.com -c $CHANNEL -f ${OUTPUT} --tls --cafile "$ORDERER_CA" >&log.txt
+peer channel update -o orderer.seogang.com:7050 --ordererTLSHostnameOverride orderer.seogang.com -c $CHANNEL -f ${OUTPUT} --tls --cafile "$ORDERER_CA" >&log.txt
 res=$?
 cat log.txt
 verifyResult $res "Anchor peer update failed"

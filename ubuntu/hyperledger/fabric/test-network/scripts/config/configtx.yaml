@@ -25,7 +25,7 @@ Organizations:
         ID: OrdererMSP
 
         # MSPDir is the filesystem path which contains the MSP configuration
-        MSPDir: ../../organizations/ordererOrganizations/example.com/msp
+        MSPDir: ../../organizations/ordererOrganizations/seogang.com/msp
 
         # Policies defines the set of policies at this level of the config tree
         # For organization policies, their canonical path is usually
@@ -42,7 +42,7 @@ Organizations:
                 Rule: "OR('OrdererMSP.admin')"
 
         OrdererEndpoints:
-            - orderer.example.com:7050
+            - orderer.seogang.com:7050
 
     - &Org1
         # DefaultOrg defines the organization which is used in the sampleconfig
@@ -52,7 +52,7 @@ Organizations:
         # ID to load the MSP definition as
         ID: Org1MSP
 
-        MSPDir: ../../organizations/peerOrganizations/org1.example.com/msp
+        MSPDir: ../../organizations/peerOrganizations/org1.seogang.com/msp
 
         # Policies defines the set of policies at this level of the config tree
         # For organization policies, their canonical path is usually
@@ -79,7 +79,7 @@ Organizations:
         # ID to load the MSP definition as
         ID: Org2MSP
 
-        MSPDir: ../../organizations/peerOrganizations/org2.example.com/msp
+        MSPDir: ../../organizations/peerOrganizations/org2.seogang.com/msp
 
         # Policies defines the set of policies at this level of the config tree
         # For organization policies, their canonical path is usually
@@ -97,6 +97,33 @@ Organizations:
             Endorsement:
                 Type: Signature
                 Rule: "OR('Org2MSP.peer')"
+
+    - &Org3
+        # DefaultOrg defines the organization which is used in the sampleconfig
+        # of the fabric.git development environment
+        Name: Org3MSP
+
+        # ID to load the MSP definition as
+        ID: Org3MSP
+
+        MSPDir: ../../organizations/peerOrganizations/org3.seogang.com/msp
+
+        # Policies defines the set of policies at this level of the config tree
+        # For organization policies, their canonical path is usually
+        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('Org3MSP.admin', 'Org3MSP.peer', 'Org3MSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('Org3MSP.admin', 'Org3MSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('Org3MSP.admin')"
+            Endorsement:
+                Type: Signature
+                Rule: "OR('Org3MSP.peer')"   
 
 ################################################################################
 #
@@ -209,14 +236,14 @@ Orderer: &OrdererDefaults
     # as TLS validation.  The preferred way to specify orderer addresses is now
     # to include the OrdererEndpoints item in your org definition
     Addresses:
-        - orderer.example.com:7050
+        - orderer.seogang.com:7050
 
     EtcdRaft:
         Consenters:
-        - Host: orderer.example.com
+        - Host: orderer.seogang.com
           Port: 7050
-          ClientTLSCert: ../../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-          ServerTLSCert: ../../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+          ClientTLSCert: ../../organizations/ordererOrganizations/seogang.com/orderers/orderer.seogang.com/tls/server.crt
+          ServerTLSCert: ../../organizations/ordererOrganizations/seogang.com/orderers/orderer.seogang.com/tls/server.crt
 
     # Batch Timeout: The amount of time to wait before creating a batch
     BatchTimeout: 2s
@@ -314,5 +341,6 @@ Profiles:
             Organizations:
                 - *Org1
                 - *Org2
+                - *Org3
             Capabilities:
                 <<: *ApplicationCapabilities

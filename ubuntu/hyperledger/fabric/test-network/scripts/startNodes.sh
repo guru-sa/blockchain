@@ -45,7 +45,7 @@ COMPOSE_FILES="-f ${COMPOSE_FILE_BASE}"
 if [ "${DATABASE}" == "couchdb" ]; then
   COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_COUCH}"
 fi
-IMAGE_TAG=$IMAGETAG docker-compose ${COMPOSE_FILES} up -d 2>&1
+IMAGE_TAG=$IMAGETAG docker-compose --env-file ../.env ${COMPOSE_FILES} up -d 2>&1
 if [ $? -ne 0 ]; then
   fatalln "ERROR !!!! Unable to start node"
 fi

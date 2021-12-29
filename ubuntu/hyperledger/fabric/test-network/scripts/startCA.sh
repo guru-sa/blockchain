@@ -35,6 +35,6 @@ fi
     
 infoln "Generating certificates using Fabric CA"
 
-IMAGE_TAG=${CA_IMAGETAG} docker-compose -f $COMPOSE_FILE_CA up -d 2>&1
+IMAGE_TAG=${CA_IMAGETAG} docker-compose --env-file ../.env -f $COMPOSE_FILE_CA up -d 2>&1
 
 exit 0

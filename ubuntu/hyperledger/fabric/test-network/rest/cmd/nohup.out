@@ -1,0 +1,13 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /invoke                   --> rest/assetTransfer.Invoke (3 handlers)
+[GIN-debug] POST   /query                    --> rest/assetTransfer.Query (3 handlers)
+[GIN-debug] Listening and serving HTTP on :7000
+2021/11/25 00:44:07 req: {ID:sample_id Hash:c2FtcGxlX2lkCg==}
+2021/11/25 00:44:07 ============ application-golang starts ============
+ [fabsdk/core] 2021/11/24 15:44:07 UTC - cryptosuite.GetDefault -> INFO No default cryptosuite found, using default SW implementation
+2021/11/25 00:44:07 --> Submit Transaction: Invoke, creates new asset with id: sample_id, hash: c2FtcGxlX2lkCg== arguments

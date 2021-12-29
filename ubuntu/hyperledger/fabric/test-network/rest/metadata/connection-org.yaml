@@ -1,0 +1,102 @@
+---
+name: test-network-org1
+version: 1.0.0
+client:
+  organization: Org1
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+        eventHub: 60
+        eventReg: 3
+      orderer:
+        - 300
+    options:
+      grpc.keepalive_timeout_ms: 180000
+channels:
+  mychannel:
+    orderers:
+      - orderer.seogang.com
+    peers:
+      peer0.org1.seogang.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+    chaincodes:
+      - assetTransfer   
+organizations:
+  Org1:
+    mspid: Org1MSP
+    peers:
+    - peer0.org1.seogang.com
+    certificateAuthorities:
+    - ca.org1.seogang.com
+orderers:
+  orderer.seogang.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer.seogang.com
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICCjCCAbGgAwIBAgIUFfiSvYaY4A5JmAVB/TYSxOlkom8wCgYIKoZIzj0EAwIw
+        YjELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE5ldyBZb3JrMREwDwYDVQQHEwhOZXcg
+        WW9yazEUMBIGA1UEChMLc2VvZ2FuZy5jb20xFzAVBgNVBAMTDmNhLnNlb2dhbmcu
+        Y29tMB4XDTIxMTExNjE1MzcwMFoXDTM2MTExMjE1MzcwMFowYjELMAkGA1UEBhMC
+        VVMxETAPBgNVBAgTCE5ldyBZb3JrMREwDwYDVQQHEwhOZXcgWW9yazEUMBIGA1UE
+        ChMLc2VvZ2FuZy5jb20xFzAVBgNVBAMTDmNhLnNlb2dhbmcuY29tMFkwEwYHKoZI
+        zj0CAQYIKoZIzj0DAQcDQgAELbVEwNyD+zNknzpMHvmBO+G6fmznUHXhL6A8GT6y
+        UovogtUvJlb1bO4wt6FReldNCl/6+UP59VNzIFSzl1MgQ6NFMEMwDgYDVR0PAQH/
+        BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFDvbKUtn3s6ICdbd
+        umEmEMqe1FF+MAoGCCqGSM49BAMCA0cAMEQCIFb9CZ1OSd4vmATH1EBByYzvscp/
+        6VfpPfLqt1Nr14D2AiAdYBG1BoBF7Zxc9doLqXRRQuHuT7YcEwreqYPr05CVew==
+        -----END CERTIFICATE-----
+        
+peers:
+  peer0.org1.seogang.com:
+    url: grpcs://localhost:7051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICJzCCAc2gAwIBAgIURSgo+Xf4MnbSC6aNqR8PAM1VD4QwCgYIKoZIzj0EAwIw
+        cDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMQ8wDQYDVQQH
+        EwZEdXJoYW0xGTAXBgNVBAoTEG9yZzEuc2VvZ2FuZy5jb20xHDAaBgNVBAMTE2Nh
+        Lm9yZzEuc2VvZ2FuZy5jb20wHhcNMjExMTE2MTUzNzAwWhcNMzYxMTEyMTUzNzAw
+        WjBwMQswCQYDVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExDzANBgNV
+        BAcTBkR1cmhhbTEZMBcGA1UEChMQb3JnMS5zZW9nYW5nLmNvbTEcMBoGA1UEAxMT
+        Y2Eub3JnMS5zZW9nYW5nLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABGF7
+        6Zq/oampR49tDBXBYfbp+81njxEuE4FvVmbwyR3WH+bwyhFwiGSfrf9RBOjfAhtd
+        aYjqdUBy4BF0TLvs8n2jRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAG
+        AQH/AgEBMB0GA1UdDgQWBBTWf9jNPqjV9DUHklFeZIGXMuJztDAKBggqhkjOPQQD
+        AgNIADBFAiEAorZE4kT6bJX+sRI15387eOEnH7zUbcS4O66pj38BTp0CIECUonws
+        4Pr5Vk5aTIcq27TUr9wV2vOvDg3VUM9zcugC
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.seogang.com
+      hostnameOverride: peer0.org1.seogang.com
+certificateAuthorities:
+  ca.org1.seogang.com:
+    url: https://localhost:7054
+    caName: ca-org1
+    tlsCACerts:
+      pem: 
+      - |
+        -----BEGIN CERTIFICATE-----
+        MIICJzCCAc2gAwIBAgIURSgo+Xf4MnbSC6aNqR8PAM1VD4QwCgYIKoZIzj0EAwIw
+        cDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMQ8wDQYDVQQH
+        EwZEdXJoYW0xGTAXBgNVBAoTEG9yZzEuc2VvZ2FuZy5jb20xHDAaBgNVBAMTE2Nh
+        Lm9yZzEuc2VvZ2FuZy5jb20wHhcNMjExMTE2MTUzNzAwWhcNMzYxMTEyMTUzNzAw
+        WjBwMQswCQYDVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExDzANBgNV
+        BAcTBkR1cmhhbTEZMBcGA1UEChMQb3JnMS5zZW9nYW5nLmNvbTEcMBoGA1UEAxMT
+        Y2Eub3JnMS5zZW9nYW5nLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABGF7
+        6Zq/oampR49tDBXBYfbp+81njxEuE4FvVmbwyR3WH+bwyhFwiGSfrf9RBOjfAhtd
+        aYjqdUBy4BF0TLvs8n2jRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAG
+        AQH/AgEBMB0GA1UdDgQWBBTWf9jNPqjV9DUHklFeZIGXMuJztDAKBggqhkjOPQQD
+        AgNIADBFAiEAorZE4kT6bJX+sRI15387eOEnH7zUbcS4O66pj38BTp0CIECUonws
+        4Pr5Vk5aTIcq27TUr9wV2vOvDg3VUM9zcugC
+        -----END CERTIFICATE-----
+        
+    httpOptions:
+      verify: false

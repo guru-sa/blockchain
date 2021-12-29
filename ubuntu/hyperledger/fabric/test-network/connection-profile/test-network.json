@@ -1,0 +1,48 @@
+{
+	"name": "test-network",
+	"version": "1.0.0",
+	"client": {
+		"tlsEnable": true,
+		"adminCredential": {
+			"id": "exploreradmin",
+			"password": "exploreradminpw"
+		},
+		"enableAuthentication": true,
+		"organization": "Org1MSP",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"mychannel": {
+			"peers": {
+				"peer0.org1.seogang.com": {}
+			}
+		}
+	},
+	"organizations": {
+		"Org1MSP": {
+			"mspid": "Org1MSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/org1.seogang.com/users/user1@org1.seogang.com/msp/keystore/b76eac662c4e774b7f29101264e5ffa43178495f5973a5fec8b3376d4a8d83cf_sk"
+			},
+			"peers": ["peer0.org1.seogang.com"],
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/org1.seogang.com/users/user1@org1.seogang.com/msp/signcerts/cert.pem"
+			}
+		}
+	},
+	"peers": {
+		"peer0.org1.seogang.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/org1.seogang.com/peers/peer0.org1.seogang.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.org1.seogang.com:7051"
+		}
+	}
+}
